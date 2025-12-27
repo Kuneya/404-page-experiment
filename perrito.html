@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>404: Interrogatorio Perruno</title>
+  <style>
+    body {
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background-color: #fffbe6;
+      color: #333;
+      text-align: center;
+      padding: 2rem;
+    }
+    #perrito {
+      width: 200px;
+    }
+    .pregunta {
+      font-size: 1.4rem;
+      margin: 1.5rem 0;
+    }
+    .respuesta-btn {
+      margin: 0.5rem;
+      padding: 0.7rem 1.2rem;
+      font-size: 1rem;
+      border-radius: 12px;
+      border: none;
+      background-color: #ffe07c;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .respuesta-btn:hover {
+      background-color: #ffcb3d;
+    }
+    #reaccion {
+      margin-top: 2rem;
+      font-size: 1.2rem;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🕵️‍♂️ El Perrito te hará preguntas incómodas</h1>
+  <img id="perrito" src="https://cdn.pixabay.com/photo/2017/09/25/13/12/dog-2785074_1280.png" alt="Perrito serio">
+  
+  <div class="pregunta" id="pregunta">¿Qué haces aquí, humano?</div>
+  <div id="respuestas"></div>
+  <div id="reaccion"></div>
+
+  <script>
+    const preguntas = [
+      {
+        texto: "Si fueras un sándwich… ¿qué tipo de pan serías?",
+        respuestas: [
+          "Pan de ajo con actitud",
+          "Pan sin gluten porque soy difícil",
+          "Pan de nube, porque no existo",
+          "Prefiero no ser pan, gracias"
+        ]
+      },
+      {
+        texto: "¿Qué harías si un pato te pide tu contraseña?",
+        respuestas: [
+          "Se la doy, confío en los patos",
+          "Le lanzo pan y huyo",
+          "Le pido su contraseña primero",
+          "Cambio mi contraseña a 'pato123'"
+        ]
+      },
+      {
+        texto: "¿Has intentado alguna vez ladrar para expresarte?",
+        respuestas: [
+          "Sí, en el trabajo",
+          "Solo en reuniones familiares",
+          "Lo hago a diario. ¿No es normal?",
+          "Nunca, pero lo consideraré"
+        ]
+      },
+      {
+        texto: "¿Qué se siente estar perdido en internet?",
+        respuestas: [
+          "Igual que en la vida",
+          "Me gusta, es misterioso",
+          "Es parte del viaje",
+          "Pánico, pero con estilo"
+        ]
+      }
+    ];
+
+    const reacciones = [
+      "🤨 Mmm... interesante elección.",
+      "🤣 ¡JAJA! Esa sí no me la esperaba.",
+      "🐶 Me lo voy a anotar para mi tesis.",
+      "😐 Eso explica muchas cosas...",
+      "👏 Humano, estás en otro nivel."
+    ];
+
+    const preguntaDiv = document.getElementById('pregunta');
+    const respuestasDiv = document.getElementById('respuestas');
+    const reaccionDiv = document.getElementById('reaccion');
+
+    function mostrarPregunta() {
+      const pregunta = preguntas[Math.floor(Math.random() * preguntas.length)];
+      preguntaDiv.textContent = pregunta.texto;
+      respuestasDiv.innerHTML = '';
+      reaccionDiv.textContent = '';
+
+      pregunta.respuestas.forEach(respuesta => {
+        const btn = document.createElement('button');
+        btn.className = 'respuesta-btn';
+        btn.textContent = respuesta;
+        btn.onclick = () => {
+          reaccionDiv.textContent = reacciones[Math.floor(Math.random() * reacciones.length)];
+          setTimeout(mostrarPregunta, 2500); // otra pregunta en 2.5s
+        };
+        respuestasDiv.appendChild(btn);
+      });
+    }
+
+    mostrarPregunta();
+  </script>
+
+</body>
+</html>
+
+
